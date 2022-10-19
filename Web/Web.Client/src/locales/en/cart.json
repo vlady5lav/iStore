@@ -1,0 +1,12 @@
+{
+  "title": "Cart",
+  "checkout": "Checkout",
+  "total_price": "Total",
+  "placeholder": {
+    "empty": "There is no items in your cart,\nyou should correct this ;)"
+  },
+  "values": {
+    "add": "+",
+    "remove": "–"
+  }
+}

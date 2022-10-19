@@ -1,0 +1,35 @@
+{
+  "title": "Товари",
+  "error": {
+    "empty": "Порожньо"
+  },
+  "placeholder": {
+    "title": "Назва",
+    "empty": "Немає продуктів, що відповідали б визначеним критеріям :("
+  },
+  "properties": {
+    "title": "Назва",
+    "brand": "Бренд",
+    "name": "Модель",
+    "type": "Тип",
+    "price": "Ціна",
+    "warranty": "Гарантія (місяців)",
+    "description": "Опис"
+  },
+  "selectors": {
+    "all": "Всі",
+    "brands": "Вибрати Бренд",
+    "selected_brands": "Вибрано: {{count}} брендів",
+    "selected_types": "Вибрано: {{count}} типів",
+    "types": "Вибрати Тип"
+  },
+  "tooltips": {
+    "cart_add": "Додати до кошика",
+    "description": "Опис",
+    "details": "Детальніше"
+  },
+  "values": {
+    "add": "+",
+    "remove": "–"
+  }
+}

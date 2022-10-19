@@ -1,0 +1,35 @@
+FROM node:alpine AS dev
+ENV NODE_ENV development
+WORKDIR /app
+COPY . .
+RUN corepack enable
+RUN corepack prepare yarn@stable --activate
+#RUN npx --yes npm-check-updates@latest --target latest --pre 1 --upgrade --color \
+#--concurrency 8 --configFilePath . --configFileName .ncurc.json --cwd . \
+#--dep prod,dev,bundle,optional,peer --errorLevel 1
+#RUN yarn set version berry ; \
+#yarn plugin import typescript ; \
+#yarn plugin import interactive-tools
+#RUN yarn config set --home enableTelemetry false ; \
+#yarn config set enableTelemetry false ; \
+#yarn config set nodeLinker pnp ; \
+#yarn config set pnpEnableEsmLoader true ; \
+#yarn config set pnpEnableInlining true ; \
+#yarn config set pnpFallbackMode dependencies-only ; \
+#yarn config set pnpMode strict ; \
+#yarn config set packageExtensions --json \
+#'{ "@mui/x-date-pickers@*": { "dependencies": { "react-dom": "*" } }, \
+#"chalk@*": { "dependencies": { "#ansi-styles": "npm:ansi-styles@*", "#supports-color": "npm:supports-color@*" } }, \
+#"eslint-config-react-app@*": { "dependencies": { "@babel/plugin-syntax-flow": "*", "@babel/plugin-transform-react-jsx": "*" } }, \
+#"material-react-table@*": { "dependencies": { "react-dom": "*" } }, \
+#"material-table@*": { "dependencies": { "@emotion/react": "*" } }, \
+#"material-ui-popup-state@*": { "dependencies": { "react-dom": "*" } }, \
+#"npm-check-updates@*": { "dependencies": { "ini": "*" } }, \
+#"react-router-dom@*": { "dependencies": { "@remix-run/router": "*" } }, \
+#"stylelint-config-recommended-scss@*": { "dependencies": { "postcss": "*" } }, \
+#"stylelint-config-xo-scss@*": { "dependencies": { "postcss": "*" } } }'
+RUN yarn install ; yarn up
+#RUN yarn dlx @yarnpkg/sdks vscode
+CMD [ "yarn", "start" ]
+
+LABEL "project"="iStore_Web.Client"

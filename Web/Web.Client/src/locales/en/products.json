@@ -1,0 +1,35 @@
+{
+  "title": "Products",
+  "error": {
+    "empty": "Empty"
+  },
+  "placeholder": {
+    "title": "Title",
+    "empty": "There are no products that meet the defined criteria :("
+  },
+  "properties": {
+    "title": "Title",
+    "brand": "Brand",
+    "name": "Model",
+    "type": "Type",
+    "price": "Price",
+    "warranty": "Warranty (months)",
+    "description": "Description"
+  },
+  "selectors": {
+    "all": "All",
+    "brands": "Select Brand",
+    "selected_brands": "Selected: {{count}} brands",
+    "selected_types": "Selected: {{count}} types",
+    "types": "Select Type"
+  },
+  "tooltips": {
+    "cart_add": "Add to cart",
+    "description": "Description",
+    "details": "Details"
+  },
+  "values": {
+    "add": "+",
+    "remove": "–"
+  }
+}

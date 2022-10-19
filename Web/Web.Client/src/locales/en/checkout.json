@@ -1,0 +1,47 @@
+{
+  "title": "Checkout",
+  "steps": {
+    "shipping": "Shipping address",
+    "payment": "Payment details",
+    "review": "Review your order"
+  },
+  "checkout": {
+    "checkout": "Checkout",
+    "thanks": "Thank you for your order",
+    "order_confirmed": "Your order number is {{order.number}}. We have emailed your order confirmation, and will send you an update when your order has shipped.",
+    "back": "Back",
+    "next": "Next",
+    "total": "Total",
+    "confirm": "Confirm"
+  },
+  "address_form": {
+    "shipping_address": "Shipping address",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "address_line_1": "Address line 1",
+    "address_line_2": "Address line 2",
+    "city": "City",
+    "state": "State / Province / Region",
+    "zip": "Zip / Postal code",
+    "country": "Country",
+    "use_address_for_payment": "Use this address for payment details"
+  },
+  "payment_form": {
+    "payment_method": "Payment method",
+    "name_on_card": "Name on card",
+    "card_number": "Card number",
+    "expiry_date": "Expiry date",
+    "cvv": "CVV",
+    "cvv_help": "Last three digits on signature strip",
+    "remember_card": "Remember credit card details for next time"
+  },
+  "review": {
+    "card_holder": "Card holder",
+    "card_number": "Card number",
+    "expiry_date": "Expiry date",
+    "order_summary": "Order summary",
+    "shipping": "Shipping",
+    "payment_details": "Payment details",
+    "total": "Total"
+  }
+}

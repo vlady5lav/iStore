@@ -1,0 +1,10 @@
+{
+  "title": "Header",
+  "account": "Account",
+  "cart": "Cart",
+  "home": "Home",
+  "products": "Products",
+  "profile": "Profile",
+  "login": "Login",
+  "logout": "Logout"
+}

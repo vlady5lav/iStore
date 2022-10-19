@@ -1,0 +1,12 @@
+{
+  "filter": [
+    "/^.*$/"
+  ],
+  "filterVersion": [
+    "/^.*$/"
+  ],
+  "pre": 1,
+  "reject": [],
+  "rejectVersion": [],
+  "target": "latest"
+}

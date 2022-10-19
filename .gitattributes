@@ -1,0 +1,444 @@
+###############################################################################
+# Git Line Endings
+###############################################################################
+
+###############################################################################
+# Set default behavior to automatically normalize line endings.
+###############################################################################
+
+* text=auto eol=lf encoding=UTF-8
+
+###############################################################################
+# Force ASP.NET Web Page files to always use CRLF line endings.
+###############################################################################
+
+*.asp text eol=crlf encoding=UTF-8
+*.aspx text eol=crlf encoding=UTF-8
+*.cshtm text eol=crlf encoding=UTF-8
+*.cshtml text eol=crlf encoding=UTF-8
+*.razor text eol=crlf encoding=UTF-8
+*.vbhtm text eol=crlf encoding=UTF-8
+*.vbhtml text eol=crlf encoding=UTF-8
+
+###############################################################################
+# Force Visual Studio Project & Solution files to always use CRLF line endings.
+###############################################################################
+
+*.asaproj text eol=crlf encoding=UTF-8
+*.asaproj.* text eol=crlf encoding=UTF-8
+*.ccproj text eol=crlf encoding=UTF-8
+*.ccproj.* text eol=crlf encoding=UTF-8
+*.csproj text eol=crlf encoding=UTF-8
+*.csproj.* text eol=crlf encoding=UTF-8
+*.dbproj text eol=crlf encoding=UTF-8
+*.dbproj.* text eol=crlf encoding=UTF-8
+*.dcproj text eol=crlf encoding=UTF-8
+*.dcproj.* text eol=crlf encoding=UTF-8
+*.deployproj text eol=crlf encoding=UTF-8
+*.deployproj.* text eol=crlf encoding=UTF-8
+*.edgeproj text eol=crlf encoding=UTF-8
+*.edgeproj.* text eol=crlf encoding=UTF-8
+*.esproj text eol=crlf encoding=UTF-8
+*.esproj.* text eol=crlf encoding=UTF-8
+*.fsproj text eol=crlf encoding=UTF-8
+*.fsproj.* text eol=crlf encoding=UTF-8
+*.hiveproj text eol=crlf encoding=UTF-8
+*.hiveproj.* text eol=crlf encoding=UTF-8
+*.lsproj text eol=crlf encoding=UTF-8
+*.lsproj.* text eol=crlf encoding=UTF-8
+*.modelproj text eol=crlf encoding=UTF-8
+*.modelproj.* text eol=crlf encoding=UTF-8
+*.msbuildproj text eol=crlf encoding=UTF-8
+*.msbuildproj.* text eol=crlf encoding=UTF-8
+*.njsproj text eol=crlf encoding=UTF-8
+*.njsproj.* text eol=crlf encoding=UTF-8
+*.pigproj text eol=crlf encoding=UTF-8
+*.pigproj.* text eol=crlf encoding=UTF-8
+*.proj text eol=crlf encoding=UTF-8
+*.proj.* text eol=crlf encoding=UTF-8
+*.projitems text eol=crlf encoding=UTF-8
+*.projitems.* text eol=crlf encoding=UTF-8
+*.sfproj text eol=crlf encoding=UTF-8
+*.sfproj.* text eol=crlf encoding=UTF-8
+*.shproj text eol=crlf encoding=UTF-8
+*.shproj.* text eol=crlf encoding=UTF-8
+*.sqlproj text eol=crlf encoding=UTF-8
+*.sqlproj.* text eol=crlf encoding=UTF-8
+*.vbproj text eol=crlf encoding=UTF-8
+*.vbproj.* text eol=crlf encoding=UTF-8
+*.vcproj text eol=crlf encoding=UTF-8
+*.vcproj.* text eol=crlf encoding=UTF-8
+*.vcxitems text eol=crlf encoding=UTF-8
+*.vcxitems.* text eol=crlf encoding=UTF-8
+*.vcxproj text eol=crlf encoding=UTF-8
+*.vcxproj.* text eol=crlf encoding=UTF-8
+*.vcxproj.filters text eol=crlf encoding=UTF-8
+*.usqldbproj text eol=crlf encoding=UTF-8
+*.usqldbproj.* text eol=crlf encoding=UTF-8
+*.usqlproj text eol=crlf encoding=UTF-8
+*.usqlproj.* text eol=crlf encoding=UTF-8
+*.usqlutproj text eol=crlf encoding=UTF-8
+*.usqlutproj.* text eol=crlf encoding=UTF-8
+*.wapproj text eol=crlf encoding=UTF-8
+*.wapproj.* text eol=crlf encoding=UTF-8
+*.wixproj text eol=crlf encoding=UTF-8
+*.wixproj.* text eol=crlf encoding=UTF-8
+*.wwaproj text eol=crlf encoding=UTF-8
+*.wwaproj.* text eol=crlf encoding=UTF-8
+*.xproj text eol=crlf encoding=UTF-8
+*.xproj.* text eol=crlf encoding=UTF-8
+
+*.sln text eol=crlf encoding=UTF-8
+*.slnf text eol=crlf encoding=UTF-8
+
+###############################################################################
+# Force windows script and config files to always use CRLF line endings so that
+# if a repo is accessed in Windows via a file share from Linux, the scripts
+# will work.
+###############################################################################
+
+*.[bB][aA][tT] text eol=crlf
+*.[cC][mM][dD] text eol=crlf
+*.[cC][oO][mM] text eol=crlf
+*.[pP][sS]1 text eol=crlf
+*.[wW][sS][lL][cC][oO][nN][fF][iI][gG] text eol=crlf
+
+###############################################################################
+# Force linux script and config files to always use LF line endings so that if
+# a repo is accessed in Unix via a file share from Windows, the scripts will
+# work.
+###############################################################################
+
+*.[bB][aA][sS][hH] text eol=lf
+*.[cC][oO][nN][fF] text eol=lf
+*.[sS][hH] text eol=lf
+*.[zZ][sS][hH] text eol=lf
+
+###############################################################################
+# Set default behavior for command prompt diff.
+#
+# This is need for earlier builds of msysgit that does not have it on by
+# default for csharp files.
+#
+# Note: This is only used by command line.
+###############################################################################
+
+#*.cs text diff=csharp
+
+###############################################################################
+# Set the merge driver for project and solution files.
+#
+# Merging from the command prompt will add diff markers to the files if there
+# are conflicts (merging from VS is not affected by the settings below, in VS
+# the diff markers are never inserted). Diff markers may cause the following
+# file extensions to fail to load in VS. An alternative would be to treat
+# these files as binary and thus will always conflict and require user
+# intervention with every merge. To do so, just uncomment the entries below.
+###############################################################################
+
+#*.asaproj merge=binary
+#*.ccproj merge=binary
+#*.csproj merge=binary
+#*.dbproj merge=binary
+#*.dcproj merge=binary
+#*.deployproj merge=binary
+#*.edgeproj merge=binary
+#*.esproj merge=binary
+#*.fsproj merge=binary
+#*.hiveproj merge=binary
+#*.lsproj merge=binary
+#*.modelproj merge=binary
+#*.msbuildproj merge=binary
+#*.njsproj merge=binary
+#*.pigproj merge=binary
+#*.proj merge=binary
+#*.projitems merge=binary
+#*.sfproj merge=binary
+#*.shproj merge=binary
+#*.sqlproj merge=binary
+#*.vbproj merge=binary
+#*.vcproj merge=binary
+#*.vcxitems merge=binary
+#*.vcxproj merge=binary
+#*.vcxproj.filters merge=binary
+#*.usqldbproj merge=binary
+#*.usqlproj merge=binary
+#*.usqlutproj merge=binary
+#*.wapproj merge=binary
+#*.wixproj merge=binary
+#*.wwaproj merge=binary
+#*.xproj merge=binary
+
+#*.sln merge=binary
+#*.slnf merge=binary
+
+###############################################################################
+# Behavior for image files.
+#
+# Image files are treated as binary by default.
+###############################################################################
+
+##### 2D Images
+#*.[aA][iI] binary
+#*.[bB][mM][pP] binary
+#*.[dD][dD][sS] binary
+#*.[eE][xX][rR] binary
+#*.[gG][iI][fF] binary
+#*.[hH][dD][rR] binary
+#*.[iI][cC][oO] binary
+#*.[iI][fF][fF] binary
+#*.[jJ][pP][eE][gG] binary
+#*.[jJ][pP][gG] binary
+#*.[pP][iI][cC][tT] binary
+#*.[pP][nN][gG] binary
+#*.[pP][sS][dD] binary
+#*.[tT][gG][aA] binary
+#*.[tT][iI][fF] binary
+#*.[tT][iI][fF][fF] binary
+#*.[wW][eE][bB][pP] binary
+
+##### 3D Images
+#*.3[dD][mM] binary
+#*.3[dD][sS] binary
+#*.[aA][bB][cC] binary
+#*.[bB][lL][eE][nN][dD] binary
+#*.[cC]4[dD] binary
+#*.[cC][oO][lL][lL][aA][dD][aA] binary
+#*.[dD][aA][eE] binary
+#*.[dD][xX][fF] binary
+#*.[fF][bB][xX] binary
+#*.[jJ][aA][sS] binary
+#*.[lL][wW][oO] binary
+#*.[lL][wW][oO]2 binary
+#*.[lL][wW][sS] binary
+#*.[lL][xX][oO] binary
+#*.[mM][aA] binary
+#*.[mM][aA][xX] binary
+#*.[mM][bB] binary
+#*.[oO][bB][jJ] binary
+#*.[pP][lL][yY] binary
+#*.[sS][kK][pP] binary
+#*.[sS][tT][lL] binary
+#*.[zZ][tT][lL] binary
+
+###############################################################################
+# Behavior for audio files.
+#
+# Audio files are treated as binary by default.
+###############################################################################
+
+#*.[aA][aA][cC] binary
+#*.[aA][iI][fF] binary
+#*.[aA][iI][fF][fF] binary
+#*.[aA][mM][rR] binary
+#*.[bB][aA][nN][kK] binary
+#*.[iI][tT] binary
+#*.[mM][iI][dD] binary
+#*.[mM][iI][dD][iI] binary
+#*.[mM][oO][dD] binary
+#*.[mM][pP]3 binary
+#*.[oO][gG][gG] binary
+#*.[sS]3[mM] binary
+#*.[wW][aA][vV] binary
+#*.[wW][eE][bB][aA] binary
+#*.[xX][mM] binary
+
+###############################################################################
+# Behavior for video files.
+#
+# Video files are treated as binary by default.
+###############################################################################
+
+#*.[aA][sS][fF] binary
+#*.[aA][vV][iI] binary
+#*.[fF][lL][vV] binary
+#*.[mM][kK][vV] binary
+#*.[mM][oO][vV] binary
+#*.[mM][pP]4 binary
+#*.[mM][pP][eE][gG] binary
+#*.[mM][pP][gG] binary
+#*.[oO][gG][vV] binary
+#*.[vV][oO][bB] binary
+#*.[wW][eE][bB][mM] binary
+#*.[wW][mM][vV] binary
+
+###############################################################################
+# Behavior for archive files.
+#
+# Archive files are treated as binary by default.
+###############################################################################
+
+#*.7[zZ] binary
+#*.[bB][rR] binary
+#*.[bB][zZ]2 binary
+#*.[gG][zZ] binary
+#*.[rR][aA][rR] binary
+#*.[tT][aA][rR] binary
+#*.[tT][aA][rR].[gG][zZ] binary
+#*.[zZ][iI][pP] binary
+
+###############################################################################
+# Behavior for build files.
+#
+# Build files are treated as binary by default.
+###############################################################################
+
+#*.[aA][pP][pP][xX] binary
+#*.[dD][lL][lL] binary
+#*.[eE][xX][eE] binary
+#*.[mM][dD][bB] binary
+#*.[mM][sS][iI] binary
+#*.[mM][sS][iI][xX] binary
+#*.[pP][dD][bB] binary
+#*.[sS][oO] binary
+
+###############################################################################
+# Behavior for document files.
+#
+# Document files are treated as binary by default.
+###############################################################################
+
+#*.[dD][jJ][vV] binary
+#*.[dD][jJ][vV][uU] binary
+#*.[eE][pP][uU][bB] binary
+#*.[fF][bB]2 binary
+#*.[mM][oO][bB][iI] binary
+#*.[pP][dD][fF] binary
+
+###############################################################################
+# Behavior for font files.
+#
+# Font files are treated as binary by default.
+###############################################################################
+
+#*.[eE][oO][tT] binary
+#*.[oO][tT][fF] binary
+#*.[tT][tT][fF] binary
+#*.[wW][oO][fF][fF] binary
+#*.[wW][oO][fF][fF]2 binary
+
+###############################################################################
+# Diff behavior for common document formats.
+#
+# Convert binary document formats to text before diffing them. This feature is
+# only available from the command line. Turn it on by uncommenting the entries
+# below.
+###############################################################################
+
+#*.[dD][oO][cC] diff=astextplain
+#*.[dD][oO][cC][xX] diff=astextplain
+#*.[dD][oO][tT] diff=astextplain
+#*.[rR][tT][fF] diff=astextplain
+
+###############################################################################
+# Git Large File System (LFS)
+###############################################################################
+
+##### 2D Images
+#*.[aA][iI] filter=lfs diff=lfs merge=lfs -text
+#*.[bB][mM][pP] filter=lfs diff=lfs merge=lfs -text
+#*.[dD][dD][sS] filter=lfs diff=lfs merge=lfs -text
+#*.[eE][xX][rR] filter=lfs diff=lfs merge=lfs -text
+#*.[gG][iI][fF] filter=lfs diff=lfs merge=lfs -text
+#*.[hH][dD][rR] filter=lfs diff=lfs merge=lfs -text
+#*.[iI][cC][oO] filter=lfs diff=lfs merge=lfs -text
+#*.[iI][fF][fF] filter=lfs diff=lfs merge=lfs -text
+#*.[jJ][pP][eE][gG] filter=lfs diff=lfs merge=lfs -text
+#*.[jJ][pP][gG] filter=lfs diff=lfs merge=lfs -text
+#*.[pP][iI][cC][tT] filter=lfs diff=lfs merge=lfs -text
+#*.[pP][nN][gG] filter=lfs diff=lfs merge=lfs -text
+#*.[pP][sS][dD] filter=lfs diff=lfs merge=lfs -text
+#*.[tT][gG][aA] filter=lfs diff=lfs merge=lfs -text
+#*.[tT][iI][fF] filter=lfs diff=lfs merge=lfs -text
+#*.[tT][iI][fF][fF] filter=lfs diff=lfs merge=lfs -text
+#*.[wW][eE][bB][pP] filter=lfs diff=lfs merge=lfs -text
+
+##### 3D Images
+#*.3[dD][mM] filter=lfs diff=lfs merge=lfs -text
+#*.3[dD][sS] filter=lfs diff=lfs merge=lfs -text
+#*.[aA][bB][cC] filter=lfs diff=lfs merge=lfs -text
+#*.[bB][lL][eE][nN][dD] filter=lfs diff=lfs merge=lfs -text
+#*.[cC]4[dD] filter=lfs diff=lfs merge=lfs -text
+#*.[cC][oO][lL][lL][aA][dD][aA] filter=lfs diff=lfs merge=lfs -text
+#*.[dD][aA][eE] filter=lfs diff=lfs merge=lfs -text
+#*.[dD][xX][fF] filter=lfs diff=lfs merge=lfs -text
+#*.[fF][bB][xX] filter=lfs diff=lfs merge=lfs -text
+#*.[jJ][aA][sS] filter=lfs diff=lfs merge=lfs -text
+#*.[lL][wW][oO] filter=lfs diff=lfs merge=lfs -text
+#*.[lL][wW][oO]2 filter=lfs diff=lfs merge=lfs -text
+#*.[lL][wW][sS] filter=lfs diff=lfs merge=lfs -text
+#*.[lL][xX][oO] filter=lfs diff=lfs merge=lfs -text
+#*.[mM][aA] filter=lfs diff=lfs merge=lfs -text
+#*.[mM][aA][xX] filter=lfs diff=lfs merge=lfs -text
+#*.[mM][bB] filter=lfs diff=lfs merge=lfs -text
+#*.[oO][bB][jJ] filter=lfs diff=lfs merge=lfs -text
+#*.[pP][lL][yY] filter=lfs diff=lfs merge=lfs -text
+#*.[sS][kK][pP] filter=lfs diff=lfs merge=lfs -text
+#*.[sS][tT][lL] filter=lfs diff=lfs merge=lfs -text
+#*.[zZ][tT][lL] filter=lfs diff=lfs merge=lfs -text
+
+##### Archives
+#*.7[zZ] filter=lfs diff=lfs merge=lfs -text
+#*.[bB][rR] filter=lfs diff=lfs merge=lfs -text
+#*.[bB][zZ]2 filter=lfs diff=lfs merge=lfs -text
+#*.[gG][zZ] filter=lfs diff=lfs merge=lfs -text
+#*.[rR][aA][rR] filter=lfs diff=lfs merge=lfs -text
+#*.[tT][aA][rR] filter=lfs diff=lfs merge=lfs -text
+#*.[tT][aA][rR].[gG][zZ] filter=lfs diff=lfs merge=lfs -text
+#*.[zZ][iI][pP] filter=lfs diff=lfs merge=lfs -text
+
+##### Audios
+#*.[aA][aA][cC] filter=lfs diff=lfs merge=lfs -text
+#*.[aA][iI][fF] filter=lfs diff=lfs merge=lfs -text
+#*.[aA][iI][fF][fF] filter=lfs diff=lfs merge=lfs -text
+#*.[aA][mM][rR] filter=lfs diff=lfs merge=lfs -text
+#*.[bB][aA][nN][kK] filter=lfs diff=lfs merge=lfs -text
+#*.[iI][tT] filter=lfs diff=lfs merge=lfs -text
+#*.[mM][iI][dD] filter=lfs diff=lfs merge=lfs -text
+#*.[mM][iI][dD][iI] filter=lfs diff=lfs merge=lfs -text
+#*.[mM][oO][dD] filter=lfs diff=lfs merge=lfs -text
+#*.[mM][pP]3 filter=lfs diff=lfs merge=lfs -text
+#*.[oO][gG][gG] filter=lfs diff=lfs merge=lfs -text
+#*.[sS]3[mM] filter=lfs diff=lfs merge=lfs -text
+#*.[wW][aA][vV] filter=lfs diff=lfs merge=lfs -text
+#*.[wW][eE][bB][aA] filter=lfs diff=lfs merge=lfs -text
+#*.[xX][mM] filter=lfs diff=lfs merge=lfs -text
+
+##### Documents
+#*.[dD][jJ][vV] filter=lfs diff=lfs merge=lfs -text
+#*.[dD][jJ][vV][uU] filter=lfs diff=lfs merge=lfs -text
+#*.[eE][pP][uU][bB] filter=lfs diff=lfs merge=lfs -text
+#*.[fF][bB]2 filter=lfs diff=lfs merge=lfs -text
+#*.[mM][oO][bB][iI] filter=lfs diff=lfs merge=lfs -text
+#*.[pP][dD][fF] filter=lfs diff=lfs merge=lfs -text
+
+##### Fonts
+#*.[eE][oO][tT] filter=lfs diff=lfs merge=lfs -text
+#*.[oO][tT][fF] filter=lfs diff=lfs merge=lfs -text
+#*.[tT][tT][fF] filter=lfs diff=lfs merge=lfs -text
+#*.[wW][oO][fF][fF] filter=lfs diff=lfs merge=lfs -text
+#*.[wW][oO][fF][fF]2 filter=lfs diff=lfs merge=lfs -text
+
+##### Other
+#*.[aA][pP][pP][xX] filter=lfs diff=lfs merge=lfs -text
+#*.[dD][lL][lL] filter=lfs diff=lfs merge=lfs -text
+#*.[eE][xX][eE] filter=lfs diff=lfs merge=lfs -text
+#*.[mM][dD][bB] filter=lfs diff=lfs merge=lfs -text
+#*.[mM][sS][iI] filter=lfs diff=lfs merge=lfs -text
+#*.[mM][sS][iI][xX] filter=lfs diff=lfs merge=lfs -text
+#*.[pP][dD][bB] filter=lfs diff=lfs merge=lfs -text
+#*.[sS][oO] filter=lfs diff=lfs merge=lfs -text
+
+##### Video
+#*.[aA][sS][fF] filter=lfs diff=lfs merge=lfs -text
+#*.[aA][vV][iI] filter=lfs diff=lfs merge=lfs -text
+#*.[fF][lL][vV] filter=lfs diff=lfs merge=lfs -text
+#*.[mM][kK][vV] filter=lfs diff=lfs merge=lfs -text
+#*.[mM][oO][vV] filter=lfs diff=lfs merge=lfs -text
+#*.[mM][pP]4 filter=lfs diff=lfs merge=lfs -text
+#*.[mM][pP][eE][gG] filter=lfs diff=lfs merge=lfs -text
+#*.[mM][pP][gG] filter=lfs diff=lfs merge=lfs -text
+#*.[oO][gG][vV] filter=lfs diff=lfs merge=lfs -text
+#*.[vV][oO][bB] filter=lfs diff=lfs merge=lfs -text
+#*.[wW][eE][bB][mM] filter=lfs diff=lfs merge=lfs -text
+#*.[wW][mM][vV] filter=lfs diff=lfs merge=lfs -text

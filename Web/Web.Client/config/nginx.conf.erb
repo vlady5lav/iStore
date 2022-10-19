@@ -1,0 +1,316 @@
+daemon off;
+
+#user nobody; # default = nobody
+
+worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>; # heroku dynos have at least 4 cores, default = 1
+worker_rlimit_nofile 8192;
+
+pid <%= ENV['NGINX_PID_PATH'] || '/tmp/nginx.pid' %>; # default = '/usr/local/nginx/logs/nginx.pid'
+
+events {
+  use epoll;
+  accept_mutex on;
+  worker_connections <%= ENV['NGINX_WORKER_CONNECTIONS'] || 1024 %>;
+}
+
+http {
+  log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id';
+  log_format main '[ $time_local ]: [ server_name: $server_name, scheme: $scheme, host: $host, uri: $uri, status: $status, '
+                  'request: $request, http_name: $http_name, request_time: $request_time, body_bytes_sent: $body_bytes_sent, '
+                  'msec: $msec, server_addr: $server_addr, remote_addr: $remote_addr, remote_user: $remote_user, proxy_host: $proxy_host, '
+                  'upstream_addr: $upstream_addr, upstream_status: $upstream_status, upstream_response_time: $upstream_response_time, '
+                  'http_referer: $http_referer, http_user_agent: $http_user_agent, http_x_forwarded_for: $http_x_forwarded_for, '
+                  'http_x_forwarded_proto: $http_x_forwarded_proto, http_x_request_id: $http_x_request_id ]';
+
+  server_names_hash_bucket_size 128; # this seems to be required for some vhosts
+  server_names_hash_max_size 512;
+
+  upstream app_server {
+    server unix:/tmp/nginx.socket weight=1 fail_timeout=0;
+    #server host.docker.internal:5001 weight=1 fail_timeout=0;
+    #server <%= ENV['PROXY_PASS_SPA'] || ENV['PUBLIC_URL'] || ENV['REACT_APP_BASE_URL'] || 'http://host.docker.internal:5001' %> weight=1 fail_timeout=0;
+  }
+
+  server {
+    listen <%= ENV["PORT"] %>;
+    listen [::]:<%= ENV["PORT"] %>;
+
+    server_name _;
+
+    include mime.types; # leading slash - absolute reference, without slash - relative reference
+    #include proxy.conf;
+    #include fastcgi.conf;
+
+    gzip on;
+    gzip_comp_level 2;
+    gzip_min_length 512;
+    gzip_proxied any; # heroku router sends Via header
+
+    default_type application/octet-stream;
+
+    server_name_in_redirect off;
+    server_tokens off;
+
+    sendfile on;
+    sendfile_max_chunk 2m;
+    tcp_nodelay on;
+    tcp_nopush off;
+
+    client_body_buffer_size 512k;
+    client_body_timeout <%= ENV['NGINX_CLIENT_BODY_TIMEOUT'] || 5 %>; # must read the body in 5 seconds
+    client_header_buffer_size 16k;
+    client_header_timeout 60s;
+    client_max_body_size <%= ENV['NGINX_CLIENT_MAX_BODY_SIZE'] || 1 %>m;
+    keepalive_timeout 5;
+    large_client_header_buffers 16 128k;
+
+    error_log <%= ENV['NGINX_ERROR_LOG_PATH'] || '/dev/stdout' %> notice; # levels: debug, info, notice, warn, error (default), crit, alert, emerg
+    access_log <%= ENV['NGINX_ACCESS_LOG_PATH'] || '/dev/stdout' %> main; # formats: combined (default), l2met, main
+    #access_log syslog:server=unix:<%= ENV['NGINX_SOCKET'] || '/tmp/nginx.socket' %>,facility=local7,tag=nginx,severity=info main buffer=64k gzip=1 flush=5m;
+
+    resolver 1.1.1.1 1.0.0.1;
+    resolver_timeout 30s;
+
+    #root <%= ENV['HOME'] || '/app' %><%= ENV['PUBLIC'] || '/public' %>;
+    #index index.html index.htm index.php;
+
+    proxy_buffering off;
+    proxy_redirect off;
+    proxy_http_version 1.1;
+    proxy_cache_bypass $http_upgrade;
+    proxy_buffers 32 512k;
+    proxy_buffer_size 512k;
+    proxy_connect_timeout 90;
+    proxy_read_timeout 90;
+    proxy_send_timeout 90;
+
+    location ^~ /assets {
+      root <%= ENV['HOME'] || '/app' %><%= ENV['PUBLIC'] || '/public' %>;
+      try_files $uri $uri/ $uri.html $uri/index.html =404;
+    }
+
+    location ^~ /basket {
+      proxy_pass <%= ENV['PROXY_PASS_BASKET'] || ENV['REACT_APP_BASKET_API_URL'] || 'http://host.docker.internal:5003' %>;
+    }
+
+    location ^~ /catalog {
+      proxy_pass <%= ENV['PROXY_PASS_CATALOG'] || ENV['REACT_APP_CATALOG_API_URL'] || 'http://host.docker.internal:5000' %>;
+    }
+
+    location ^~ /identity {
+      proxy_pass <%= ENV['PROXY_PASS_IDENTITY'] || ENV['REACT_APP_IDENTITY_URL'] || 'http://host.docker.internal:5002' %>;
+    }
+
+    #location ^~ /pgadmin {
+    #  proxy_pass <%= ENV['PROXY_PASS_PGADMIN'] || ENV['REACT_APP_PGADMIN_URL'] || 'http://host.docker.internal:8001' %>;
+    #}
+
+    #location / {
+    #  proxy_pass <%= ENV['PROXY_PASS_SPA'] || ENV['PUBLIC_URL'] || ENV['REACT_APP_BASE_URL'] || 'http://host.docker.internal:5001' %>;
+    #}
+
+    location / {
+
+      # force SSL / redirect http -> https
+      if ($http_x_forwarded_proto != "https") {
+        return 301 https://$host$request_uri;
+      }
+
+      proxy_pass http://app_server;
+      #proxy_pass http://host.docker.internal:5001 weight=1 fail_timeout=0;
+      #proxy_pass http://unix:/tmp/nginx.socket weight=1 fail_timeout=0;
+
+      #root <%= ENV['HOME'] || '/app' %><%= ENV['PUBLIC'] || '/public' %>;
+      #try_files $uri $uri/ $uri.html $uri/index.html =404;
+      #index index.html index.htm index.php;
+      #alias <%= ENV['HOME'] %>/public;
+
+      proxy_buffering off;
+      proxy_redirect off;
+      proxy_http_version 1.1;
+      proxy_cache_bypass $http_upgrade;
+      proxy_buffers 32 512k;
+      proxy_buffer_size 512k;
+      proxy_connect_timeout 90;
+      proxy_read_timeout 90;
+      proxy_send_timeout 90;
+
+      #proxy_set_header Access-Control-Allow-Headers '*';
+      #proxy_set_header Access-Control-Allow-Methods 'CONNECT, DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT';
+      #proxy_set_header Access-Control-Allow-Origin '*';
+      proxy_set_header Connection keep-alive;
+      proxy_set_header Host $http_host;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Upgrade-Insecure-Requests 1;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Host $host;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    #location /swagger/basket {
+    #  return 301 <%= ENV['PROXY_PASS_BASKET'] || ENV['REACT_APP_BASKET_API_URL'] || 'http://host.docker.internal:5003' %>/swagger;
+    #}
+
+    #location /swagger/catalog {
+    #  return 301 <%= ENV['PROXY_PASS_CATALOG'] || ENV['REACT_APP_CATALOG_API_URL'] || 'http://host.docker.internal:5000' %>/swagger;
+    #}
+
+    #location /admin/identity {
+    #  return 301 <%= ENV['PROXY_PASS_IDENTITY'] || ENV['REACT_APP_IDENTITY_URL'] || 'http://host.docker.internal:5002' %>;
+    #}
+
+    #location /admin/pg {
+    #  return 301 <%= ENV['PROXY_PASS_PGADMIN'] || ENV['REACT_APP_PGADMIN_URL'] || 'http://host.docker.internal:8001' %>/login;
+    #}
+
+    #location /assets {
+    #  alias /var/www/assets;
+    #}
+  }
+
+  # simple php/fastcgi
+  #
+  #server {
+  #  listen 80;
+  #  server_name domain1.com www.domain1.com;
+  #  access_log logs/domain1.access.log main;
+  #  root html;
+  #
+  #  location ~ \.php$ {
+  #    fastcgi_pass 127.0.0.1:1025;
+  #  }
+  #}
+
+  # simple reverse-proxy
+  #
+  #server {
+  #  listen 80;
+  #  server_name domain2.com www.domain2.com;
+  #  access_log logs/domain2.access.log main;
+  #
+  #  # serve static files
+  #  location ~ ^/(images|javascript|js|css|flash|media|static)/ {
+  #    root /var/www/virtual/big.server.com/htdocs;
+  #    expires 30d;
+  #  }
+  #
+  #  # pass requests for dynamic content to rails/turbogears/zope, et al
+  #  location / {
+  #    proxy_pass http://127.0.0.1:8080;
+  #  }
+  #}
+
+  # simple load balancing
+  #
+  #upstream big_server_com {
+  #  server 127.0.0.3:8000 weight=5;
+  #  server 127.0.0.3:8001 weight=5;
+  #  server 192.168.0.1:8000;
+  #  server 192.168.0.1:8001;
+  #}
+  #
+  #server {
+  #  listen 80;
+  #  server_name big.server.com;
+  #  access_log logs/big.server.access.log main;
+  #
+  #  location / {
+  #    proxy_pass http://big_server_com;
+  #  }
+  #}
+
+  # simple server
+  #
+  #server {
+  #  listen 80;
+  #  listen [::]:80;
+  #  server_name localhost;
+  #
+  #  #charset utf-8;
+  #  #charset koi8-r;
+  #
+  #  #access_log /var/log/nginx/host.access.log main;
+  #
+  #  location / {
+  #    root html;
+  #    index index.html index.htm;
+  #  }
+  #
+  #  #location / {
+  #  #  root /usr/share/nginx/html;
+  #  #  index index.html index.htm;
+  #  #}
+  #
+  #  #error_page 404 /404.html;
+  #
+  #  # redirect server error pages to the static page /50x.html
+  #  #
+  #  error_page 500 502 503 504 /50x.html;
+  #  location = /50x.html {
+  #    root html;
+  #  }
+  #
+  #  #error_page 500 502 503 504 /50x.html;
+  #  #location = /50x.html {
+  #  #  root /usr/share/nginx/html;
+  #  #}
+  #
+  #  # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+  #  #
+  #  #location ~ \.php$ {
+  #  #  proxy_pass http://127.0.0.1;
+  #  #}
+  #
+  #  # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+  #  #
+  #  #location ~ \.php$ {
+  #  #  root           html;
+  #  #  fastcgi_pass   127.0.0.1:9000;
+  #  #  fastcgi_index  index.php;
+  #  #  fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+  #  #  include        fastcgi_params;
+  #  #}
+  #
+  #  # deny access to .htaccess files, if Apache's document root
+  #  # concurs with nginx's one
+  #  #
+  #  #location ~ /\.ht {
+  #  #  deny all;
+  #  #}
+  #}
+
+  # another virtual host using mix of IP-, name-, and port-based configuration
+  #
+  #server {
+  #  listen 8000;
+  #  listen somename:8080;
+  #  server_name somename alias another.alias;
+  #
+  #  location / {
+  #    root html;
+  #    index index.html index.htm;
+  #  }
+  #}
+
+  # simple https server
+  #
+  #server {
+  #  listen 443 ssl;
+  #  server_name localhost;
+  #
+  #  ssl_certificate cert.pem;
+  #  ssl_certificate_key cert.key;
+  #
+  #  ssl_session_cache shared:SSL:1m;
+  #  ssl_session_timeout 5m;
+  #
+  #  ssl_ciphers HIGH:!aNULL:!MD5;
+  #  ssl_prefer_server_ciphers on;
+  #
+  #  location / {
+  #    root html;
+  #    index index.html index.htm;
+  #  }
+  #}
+}

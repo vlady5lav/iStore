@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "IdentityServer (Dev)": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true"
+      },
+      "applicationUrl": "http://localhost:5002",
+      "dotnetRunMessages": true
+    },
+    "IdentityServer (Prod)": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true"
+      },
+      "applicationUrl": "http://localhost:5002",
+      "dotnetRunMessages": true
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "publishAllPorts": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true",
+        "ASPNETCORE_URLS": "http://+:5002"
+      },
+      "httpPort": 5002,
+      "useSSL": false
+    }
+  }
+}

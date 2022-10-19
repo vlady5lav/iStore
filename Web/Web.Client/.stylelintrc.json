@@ -1,0 +1,107 @@
+{
+  "defaultSeverity": "warning",
+  "ignoreDisables": false,
+  "ignoreFiles": [
+    "**/package*.json",
+    "**/yarn.lock"
+  ],
+  "ignorePaths": [
+    "**/.yarn",
+    "**/node_modules"
+  ],
+  "reportDescriptionlessDisables": true,
+  "reportInvalidScopeDisables": true,
+  "reportNeedlessDisables": true,
+  "extends": [
+    "stylelint-config-sass-guidelines",
+    "stylelint-config-html",
+    "stylelint-config-recommended",
+    "stylelint-config-standard",
+    "stylelint-config-recommended-scss",
+    "stylelint-config-standard-scss",
+    "stylelint-config-xo",
+    "stylelint-config-xo-scss",
+    "stylelint-config-xo-space",
+    "stylelint-config-prettier",
+    "stylelint-config-prettier-scss",
+    "stylelint-prettier/recommended"
+  ],
+  "plugins": [
+    "stylelint-csstree-validator",
+    "stylelint-order",
+    "stylelint-scss",
+    "stylelint-prettier"
+  ],
+  "rules": {
+    "alpha-value-notation": "number",
+    "color-named": null,
+    "csstree/validator": true,
+    "indentation": 2,
+    "string-quotes": "single",
+    "prettier/prettier": true
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.html",
+        "**/*.html"
+      ],
+      "customSyntax": "postcss-html"
+    },
+    {
+      "files": [
+        "*.less",
+        "**/*.less"
+      ],
+      "customSyntax": "postcss-less"
+    },
+    {
+      "files": [
+        "*.md",
+        "**/*.md"
+      ],
+      "customSyntax": "postcss-markdown"
+    },
+    {
+      "files": [
+        "*.sass",
+        "**/*.sass"
+      ],
+      "customSyntax": "postcss-sass"
+    },
+    {
+      "files": [
+        "*.scss",
+        "**/*.scss"
+      ],
+      "customSyntax": "postcss-scss"
+    },
+    {
+      "files": [
+        "*.styl",
+        "**/*.styl",
+        "*.stylus",
+        "**/*.stylus"
+      ],
+      "customSyntax": "postcss-styl"
+    },
+    {
+      "files": [
+        "*.sss",
+        "**/*.sss"
+      ],
+      "customSyntax": "sugarss"
+    },
+    {
+      "files": [
+        "**/components/**/*.css",
+        "**/containers/**/*.css",
+        "**/pages/**/*.css",
+        "**/stores/**/*.css"
+      ],
+      "rules": {
+        "prettier/prettier": true
+      }
+    }
+  ]
+}

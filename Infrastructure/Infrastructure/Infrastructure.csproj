@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>Infrastructure</AssemblyName>
+        <RootNamespace>Infrastructure</RootNamespace>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+        <GenerateErrorForMissingTargetingPacks>false</GenerateErrorForMissingTargetingPacks>
+        <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+        <CodeAnalysisRuleSet>..\..\stylecop.ruleset</CodeAnalysisRuleSet>
+        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+        <WarningsAsErrors></WarningsAsErrors>
+        <WarningsNotAsErrors></WarningsNotAsErrors>
+        <DisabledWarnings></DisabledWarnings>
+        <NoWarn></NoWarn>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <DockerfileContext>..\..</DockerfileContext>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="..\..\stylecop.json" />
+        <AdditionalFiles Include="..\..\stylecop.ruleset" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="12.0.0" />
+        <PackageReference Include="IdentityModel" Version="6.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
+        <PackageReference Include="Microsoft.OpenApi" Version="1.4.3" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.435">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.4.0" />
+    </ItemGroup>
+
+</Project>

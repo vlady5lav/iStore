@@ -1,0 +1,119 @@
+version: "3.9"
+
+services:
+  nginx:
+    image: nginx:alpine-perl
+    container_name: lde.nginx
+    restart: "no"
+    network_mode: "bridge"
+    networks:
+      - default
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  postgres:
+    image: postgres:alpine
+    container_name: lde.postgres
+    restart: "no"
+    network_mode: "bridge"
+    networks:
+      - default
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  pgadmin4:
+    image: dpage/pgadmin4:latest
+    container_name: lde.pgadmin4
+    depends_on:
+      - postgres
+    restart: "no"
+    network_mode: "bridge"
+    networks:
+      - default
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  redis:
+    image: redis:alpine
+    container_name: lde.redis
+    restart: "no"
+    network_mode: "bridge"
+    networks:
+      - default
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  identityserver:
+    container_name: lde.identityserver
+    restart: "no"
+    network_mode: "bridge"
+    networks:
+      - default
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  catalog.api:
+    container_name: lde.catalog.api
+    depends_on:
+      - postgres
+    restart: "no"
+    network_mode: "bridge"
+    networks:
+      - default
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  basket.api:
+    container_name: lde.basket.api
+    depends_on:
+      - redis
+    restart: "no"
+    network_mode: "bridge"
+    networks:
+      - default
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  web.client:
+    container_name: lde.web.client
+    restart: "no"
+    network_mode: "bridge"
+    networks:
+      - default
+    logging:
+      driver: local
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+networks:
+  default:
+    driver: bridge
+    internal: false
+    attachable: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/24
+          gateway: 192.168.0.1

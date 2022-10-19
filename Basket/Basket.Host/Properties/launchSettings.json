@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "Basket.Host (Dev)": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true"
+      },
+      "applicationUrl": "http://localhost:5003",
+      "dotnetRunMessages": true
+    },
+    "Basket.Host (Prod)": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true"
+      },
+      "applicationUrl": "http://localhost:5003",
+      "dotnetRunMessages": true
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "publishAllPorts": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true",
+        "ASPNETCORE_URLS": "http://+:5003"
+      },
+      "httpPort": 5003,
+      "useSSL": false
+    }
+  }
+}

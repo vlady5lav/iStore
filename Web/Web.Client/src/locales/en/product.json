@@ -1,0 +1,12 @@
+{
+  "title": "Product",
+  "error": {
+    "empty": "Empty",
+    "input": "You must input only digits!"
+  },
+  "placeholder": {
+    "title": "Title"
+  },
+  "save": "Save",
+  "submit": "Submit"
+}
